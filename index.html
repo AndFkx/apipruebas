@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>app</title>
+</head>
+<body>
+ <main id="app"></main>
+ <button onclick="time">Time</button>
+ <button onclick="Life">Life</button>
+    <script>
+    let pokemones = [];
+let totalPokes = 1026; /* debe agregarse uno mas ya q el indice comienza en 0 */
+
+async function  conexionLista() {
+    const res = await fetch('https://api.adviceslip.com/advice/search/life')
+    const data = await res.json()
+    pokemones = data;
+    console.log(data.slips);
+    
+
+
+for (let i = 0; i < 5; i++) {
+  fetch('https://api.adviceslip.com/advice')
+    .then(response => response.json()) 
+    .then(data => {
+      console.log(`Consejo ${i + 1}: ${data.slip.advice}`);
+    })
+    .catch(error => console.error('Error al obtener el consejo:', error));
+}
+
+}
+
+
+    
+
+
+
+conexionLista()        
+    </script>
+</body>
+</html>
